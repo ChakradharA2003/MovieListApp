@@ -2,7 +2,7 @@
 import './index.css';
 import { Link, useNavigate } from 'react-router-dom';
 
-const MovieListItem = ({ movie, onDelete }) => {
+const MovieListItem = ({ movie, movies, filterMovies }) => {
     const {
         movie_id,
         movie_title,
@@ -36,6 +36,8 @@ const MovieListItem = ({ movie, onDelete }) => {
         }
         const data = await response.json();
         alert(data.message);
+        const filteredMovies = movies.filter(movie => movie.movie_id !== movie_id);
+        filterMovies(filteredMovies);
     };
 
     return (

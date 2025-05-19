@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Home = (props) => {
     const [searchTerm, setSearchTerm] = useState("");
+    const [allMovies, setAllMovies] = useState([]);
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate(); // <-- Move useNavigate here
@@ -21,6 +22,7 @@ const Home = (props) => {
                 }
                 const data = await response.json();
                 setMovies(data);
+                setAllMovies(data);
             } catch (error) {
                 console.error('Error fetching movies:', error);
             } finally {
@@ -34,6 +36,12 @@ const Home = (props) => {
     const onClickedSearch = async (e) => {
         e.preventDefault();
         setLoading(true);
+        console.log("Search Term: ", searchTerm);
+        if (searchTerm === "") {
+            setLoading(false);
+            setMovies(allMovies);
+            return;
+        }
         const filteredMovies = movies.filter(movie => {
             return movie.movie_title.toLowerCase().includes(searchTerm.toLowerCase());
         });
@@ -64,7 +72,7 @@ const Home = (props) => {
                     ) : (
                         <ul>
                             {
-                                movies.map((movie) => <MovieListItem key={movie.movie_id} movie={movie} />)
+                                movies.map((movie) => <MovieListItem key={movie.movie_id} movie={movie} movies={movies} filterMovies={setMovies} />)
                             }
                         </ul>
                     )

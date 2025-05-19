@@ -18,6 +18,7 @@ app.get('/', (req,res) => {
 });
 app.delete('/delete-movie/:movie_id', (req,res) => {
     const { movie_id } = req.params;
+    console.log(movie_id);
     if (!movie_id) {
         return res.status(400).json({ error: 'Missing required fields' });
     }
@@ -43,8 +44,6 @@ app.delete('/delete-movie/:movie_id', (req,res) => {
 app.get('/get-all-movies', (req,res) => {
     res.set('Content-Type', 'application/json');
     const sql = `SELECT * FROM Movies`;
-    console.log("Fetching Movies");
-    console.log(sql);
     let data = [];
     try{
         db.all(sql, [], (err,rows) => {
@@ -68,7 +67,6 @@ app.get('/get-all-movies', (req,res) => {
         })
         const content = JSON.stringify(data);
         console.log("Movies Fetched Successfully");
-        console.log(content);
         res.status(200).send(content);
     })
     } catch(err) {
