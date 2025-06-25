@@ -31,7 +31,7 @@ const AddMovie = () => {
             movie_is_watched: movieIsWatched
         };
         try {
-            const response = await fetch('http://localhost:4000/add-movie', {
+            const response = await fetch('https://movielistappbackendserver.onrender.com/add-movie', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
