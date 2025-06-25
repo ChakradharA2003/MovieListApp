@@ -23,7 +23,7 @@ const MovieListItem = ({ movie, movies, filterMovies }) => {
 
     const handleDelete = async (e) => {
         e.preventDefault();
-        const response = await fetch(`http://localhost:4000/delete-movie/${movie_id}`, {
+        const response = await fetch(`https://movielistappbackendserver.onrender.com/delete-movie/${movie_id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
