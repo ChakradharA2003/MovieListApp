@@ -9,7 +9,7 @@ const MovieDetails = () => {
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/get-movie/${movie_id}`);
+        const response = await fetch(`https://movielistappbackendserver.onrender.com/get-movie/${movie_id}`);
         if (!response.ok) throw new Error('Failed to fetch movie details');
         const data = await response.json();
         console.log(data);
