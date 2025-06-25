@@ -18,7 +18,7 @@ const EditMovie = () => {
         const fetchMovie = async () => {
             try {
                 console.log(movie_id);
-                const response = await fetch(`http://localhost:4000/get-movie/${movie_id}`);
+                const response = await fetch(`https://movielistappbackendserver.onrender.com/get-movie/${movie_id}`);
                 if (!response.ok) throw new Error('Failed to fetch movie');
                 const data = await response.json();
                 const movie = data[0]; // because it's an array
@@ -50,7 +50,7 @@ const EditMovie = () => {
             movie_is_watched: movieIsWatched
         };
         try {
-            const response = await fetch(`http://localhost:4000/update-movie`, {
+            const response = await fetch(`https://movielistappbackendserver.onrender.com/update-movie`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(updatedMovie)
