@@ -70,7 +70,7 @@ const Home = (props) => {
                     {loading ? (
                         <p>Loading...</p>
                     ) : (
-                        <ul>
+                        <ul style={{ listStyleType: 'none', padding: 0 }}>
                             {
                                 movies.map((movie) => <MovieListItem key={movie.movie_id} movie={movie} movies={movies} filterMovies={setMovies} />)
                             }
